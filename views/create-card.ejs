@@ -1,9 +1,9 @@
-<div class="create-card">
+<div class="create-card modal" id="create-card-modal">
 
-  <div>
+  <div class="create-card-header">
     <h2>CREATE YOUR CARD</h1>
+    <button data-close-button class="close-button">&times;</button>
   </div>
-
   <form class="create-card-form" action="/cards" method="POST">
     <div class="create-card-input">
       <label for="title-input">Title:</label>
@@ -24,9 +24,9 @@
       <label for="thumbnail-input">Thumbnail:</label>
       <input type="text" name="thumbnail-input" placeholder="Thumbnail">
     </div>
-<div class="create-footer">
-  <button type="submit" id="submit-new-card">Create Card</button>
-</div>
+    <div>
+      <button type="submit" id="submit-new-card">Create Card</button>
+    </div>
 
   </form>
 

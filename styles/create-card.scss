@@ -1,0 +1,37 @@
+.create-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  width: 80vw;
+  height: 100vw;
+  border: 3px dotted black;
+  padding: 10px;
+  margin: 10px;
+}
+
+
+.create-card-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-end
+}
+
+
+.create-card-input {
+  display: flex;
+  margin: 5px;
+  flex-direction: column;
+}
+
+button {
+  margin: 5px;
+
+}
+
+.create-footer {
+  display: flex;
+
+}

@@ -1,0 +1,20 @@
+/* MAIN CONTAINER TO BE POPULATED WITH CARDS */
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-radius: 2%;
+  margin: 20px;
+  padding: 10px;
+  background-color: #499F68;
+}
+
+/* TEST CARDS, CAN BE EDITED AND/OR REMOVED LATER */
+.test-box {
+  border: dotted 3px black;
+  height: 300px;
+  width: 250px;
+  flex-wrap: wrap;
+  margin: 10px;
+}

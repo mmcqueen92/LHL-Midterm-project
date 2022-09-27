@@ -9,16 +9,14 @@
   padding: 1.5rem;
   z-index: 10;
   background-color: white;
+  width: 600px;
+  max-width: 80%;
 }
 
 .modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
-#get-started {
-  width: 600px;
-  max-width: 80%;
-}
 
 .get-started-header {
   padding-bottom: 1.5rem;
@@ -33,7 +31,7 @@
   border: none;
   outline: none;
   background: none;
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 
 #login-header {

@@ -1,0 +1,74 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 1.5rem;
+  z-index: 10;
+  background-color: white;
+  width: 600px;
+  max-width: 80%;
+}
+
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+.get-started-header {
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+
+.close-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.75rem;
+}
+
+#login-header {
+  font-size: 1.5rem;
+}
+#register-header {
+  font-size: 1.5rem;
+}
+
+.divider-line {
+  border-top: 1px solid #edeff1;
+  width: 40%;
+}
+
+.divider-text {
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.get-started-body{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
+#overlay.active {
+  pointer-events: all;
+  opacity: 1;
+}

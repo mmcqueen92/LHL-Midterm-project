@@ -1,0 +1,74 @@
+body {
+  display: flex;
+  background-color: #FEFFFF;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.nav-bar {
+  display: flex;
+  background-color: #3AAFA9;
+  height: 120px;
+  width: 100%;
+  position: fixed;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  color: #17252A;
+  margin-left: 15px;
+}
+
+.logo {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-left: 15px;
+}
+
+#quik_logo {
+  height: 60px;
+  width: auto;
+}
+
+.dropbtn {
+  background-color: #17252A;
+  color: #FEFFFF;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #17252A;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #FEFFFF;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #2B7A78;
+}

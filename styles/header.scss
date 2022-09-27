@@ -15,12 +15,20 @@ body {
   justify-content: space-between;
 }
 
-h1 {
+h2 {
   color: #17252A;
+  margin-left: 15px;
 }
 
 .logo {
+  display: flex;
+  flex-flow: row nowrap;
   margin-left: 15px;
+}
+
+#quik_logo {
+  height: 60px;
+  width: auto;
 }
 
 .dropbtn {

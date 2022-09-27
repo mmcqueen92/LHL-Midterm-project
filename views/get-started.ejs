@@ -1,0 +1,42 @@
+<div class="modal" id="get-started">
+  <div class="get-started-header">
+    <header>Start your Quik.collections Today!</header>
+    <button data-close-button class="close-button">&times;</button>
+  </div>
+
+  <div class="get-started-body">
+
+    <div class="login-register">
+    <header id="login-header">Log in</header>
+    <form method="post" action="/login">
+      <div class="login-form">
+        <input type="email" name="email" id="email" placeholder="Email">
+      </div>
+      <div class="login-form">
+        <input type="text" name="password" id="password" placeholder="Password">
+      </div>
+        <button class="login-register-button" id="login-button">Log in</button>
+    </form>
+  </div>
+
+    <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-text">or</span>
+    <span class="divider-line"></span>
+  </div>
+
+    <div class="login-register">
+    <header id="register-header">Sign up</header>
+    <form method="post" action="/register">
+      <div class="register-form">
+        <input type="email" name="email" id="email" placeholder="Email">
+      </div>
+      <div class="register-form">
+        <input type="text" name="password" id="password" placeholder="Password">
+      </div>
+        <button class="login-register-button" id="register-button">Continue</button>
+    </form>
+  </div>
+  </div>
+</div>
+<div id="overlay"></div>

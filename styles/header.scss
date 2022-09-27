@@ -2,9 +2,10 @@ body {
   display: flex;
   background-color: #FEFFFF;
   margin: 0 auto;
+  flex-direction: column;
 }
 
-header {
+.nav-bar {
   display: flex;
   background-color: #3AAFA9;
   height: 120px;
@@ -14,12 +15,20 @@ header {
   justify-content: space-between;
 }
 
-h1 {
+h2 {
   color: #17252A;
+  margin-left: 15px;
 }
 
 .logo {
+  display: flex;
+  flex-flow: row nowrap;
   margin-left: 15px;
+}
+
+#quik_logo {
+  height: 60px;
+  width: auto;
 }
 
 .dropbtn {

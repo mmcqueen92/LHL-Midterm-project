@@ -1,0 +1,31 @@
+#create-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+
+.create-card-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+
+
+.create-card-input {
+  display: flex;
+  margin: 5px;
+  flex-direction: column;
+}
+
+.create-card-header {
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  font-size: 2rem;
+}

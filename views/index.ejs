@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>PinSource</title>
+  <title>Quik.collections</title>
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -15,15 +15,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
   integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/main.css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/container.css" /> -->
+  <link rel="stylesheet" href="/styles/modal-pop-up.css" />
+  <link rel="stylesheet" href="/styles/create-card.css" />
 
+  <!-- SCRIPTS -->
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/modal-pop-up.js"></script>
+  <!-- <script defer src="/scripts/app.js"></script> -->
 </head>
 
 <body>
+  <%- include('get-started') %>
   <%- include('header') %>
+  <div class="container">
+    <div class="test-box"></div>
+    <div class="test-box"></div>
+    <div class="test-box"></div>
+    <div class="test-box"></div>
+  </div>
+  <%-include('create-card')%>
 </body>
 
 </html>

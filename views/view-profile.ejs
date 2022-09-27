@@ -1,7 +1,27 @@
-<div class="modal active" id="view-profile-modal">
+<div class="modal profile-card" id="view-profile-modal">
 
-  <div >
+  <div class="modal-header">
+    <header>Hey User!</header>
+    <button data-close-button class="close-button">&times;</button>
+  </div>
 
+  <div class="profile-picture-div">
+    <img id="photo" src="https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png"/>
+    <input type="file" id="file" accept="image/png, image/jpeg">
+    <label for="file" id="upload-btn">Choose Photo</label>
+    <h3>Hello [username here eventually]</h3>
+  </div>
+
+  <div class="profile-stats">
+    <div>Created</div>
+    <div>Counter</div>
+    <button>Create Card</button>
+  </div>
+
+  <div class="profile-stats">
+    <div>Collections</div>
+    <div>Counter</div>
+    <button>Create Card</button>
   </div>
 
 </div>

@@ -1,0 +1,30 @@
+.profile-card {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+}
+.profile-picture-div {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+#photo {
+  height: 200px;
+  width: 200px;
+  border: medium solid #17252A;
+  border-radius: 50%;
+}
+#file {
+  display: none;
+}
+
+.profile-stats {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+.profile-stats div {
+  padding: 15px;
+}

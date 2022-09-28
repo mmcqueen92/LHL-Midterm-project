@@ -1,4 +1,4 @@
-
+// THIS SCRIPT IS ONLY FOR THE MENU POP-UPS
 
 //
 // ----- JQuery Doc Ready -----
@@ -18,7 +18,7 @@ $(() => {
   };
 
   // There will be multiple ways to open and close modals so we need to access their entire data attribute
-  const $openModalButtons = document.querySelectorAll('[data-modal-target]');
+  const $openModalButtons = document.querySelectorAll('.dropdown-content [data-modal-target]');
   const $closeModalButtons = document.querySelectorAll('[data-close-button]');
   const $overlay = $('#overlay');
 
@@ -40,7 +40,5 @@ $(() => {
       closeModal(modal);
     })
   });
-
-
 
 });

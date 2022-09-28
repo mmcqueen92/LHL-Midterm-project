@@ -37,6 +37,55 @@
   </div>
   <%-include('create-card')%>
   <%-include('view-profile')%>
+
+  <!-- CARD-INFO-MODAL HIDDEN BY DEFAULT  -->
+  <div class="card-info" id="card-info-modal">
+    <div class="modal-header">
+      <h3>
+        <!-- jquery fills here -->
+      </h3>
+      <button data-close-button class="close-button" id="card-info-modal-close-button">&times;</button>
+    </div>
+    <div class="card-date">
+      <!-- jquery fills here -->
+    </div>
+    <div class="card-description">
+      <h3>
+       <!-- jquery fills here -->
+      </h3>
+    </div>
+    <div class="thumbnail">
+      <!-- jquery fills here -->
+    </div>
+    <footer>
+      <i class="fa-regular fa-thumbs-up">Like</i>
+      <i class="fa-regular fa-comment">Comments</i>
+      <i class="fa-regular fa-comment">Collect</i>
+    </footer>
+
+    <section class="comment-box">
+      <form class="form">
+        <textarea name="text" placeholder="Add a comment..."></textarea>
+        <div>
+          <button type="submit" class="submit-button">Submit</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="comments">
+      <header class="comments-header">
+        <div class="user-info">
+        <img src=/>
+        <div class="name">Username</div>
+        </div>
+      </header>
+      <p class="comments-content">Comment</p>
+      <div class="comments-footer">
+        <i class="fa-regular fa-thumbs-up">Like</i>
+      </div>
+    </section>
+  </div>
+
 </body>
 
 </html>

@@ -1,5 +1,13 @@
+#card-info-modal {
+  display: none;
+}
+
 .card-info {
   display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 600px;
   height: 600px;
   flex-direction: column;

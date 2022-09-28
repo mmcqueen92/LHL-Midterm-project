@@ -5,32 +5,32 @@ $(() => {
   console.log(`app.js is working`);
 
   //
-  // ----- Open & Close Modal Funcs -----
+  // ----- Closes Hardcoded Info Modal -----
   //
-  const openModal = (modal) => {
-    if (modal === null) return;
-    $(modal).addClass('active');
-    $('#overlay').addClass('active');
-  };
-  const closeModal = (modal) => {
-    if (modal === null) return;
-    $(modal).removeClass('active');
-    $('#overlay').removeClass('active');
-  };
+  $(`#card-info-modal-close-button`).on('click', (event) => {
+    event.preventDefault();
+    $(`#card-info-modal`).hide();
+    $(`#overlay`).removeClass(`active`);
+  });
+  $(`#overlay`).on('click', (event) => {
+    event.preventDefault();
+    $(`#card-info-modal`).hide();
+    $(`#overlay`).removeClass(`active`);
+  });
 
   //
-  // ----- Creating Card TILES -----
+  // ----- Fills in correct data to the empty hidden InfoModal -----
   //
-  const createCardTile = (cardInfo) => {
-    // Pulling certain data from cardInfo obj
+
+  // change to rendering the view modal from html already coded in
+  const fillCardInfoModal = (cardInfo) => {
     const cardId = cardInfo.id;
     const title = cardInfo.title;
     const url = cardInfo.url;
     const date = cardInfo.created_at;
+    const description = cardInfo.description;
 
-    //
     // ----- ESCAPE FUNCTION FOR SAFEHTML -----
-    //
     const escape = (str) => {
       let div = document.createElement("div");
       // Must use this function for <div, h1-6, p> tags which are non-editable but unsafeHTML
@@ -38,9 +38,32 @@ $(() => {
       return div.innerHTML;
     };
 
+    // Fills in the correct values for the hidden info-modal
+    $("#card-info-modal").find("div.modal-header > h3").text(`${escape(title)}`);
+    $("#card-info-modal").find("div.card-date").text(`${date}`);
+    $("#card-info-modal").find("div.card-description > h3").text(`${escape(description)}`);
+    $("#card-info-modal").find("div.thumbnail").text(`${escape(url)}`);
+  };
+
+  //
+  // ----- Create's the clickable card tiles on initial page request -----
+  //
+  const createCardTile = (cardData) => {
+    // Pulling certain data from cardData obj
+    const title = cardData.title;
+    const url = cardData.url;
+    const date = cardData.created_at;
+
+    // ----- ESCAPE FUNCTION FOR SAFEHTML -----
+    const escape = (str) => {
+      let div = document.createElement("div");
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    };
+
     // Plug them into the cardTile template that will be made client-side
     const $cardTile = $(`
-      <button data-modal-target="#card-info-modal-${cardId}" class="card-tile">
+      <button data-modal-target="#card-info-modal" class="card-tile">
         <article>
           <div class="card-title">
             <h3 class="card-tile-title">${escape(title)}</h3>
@@ -62,120 +85,61 @@ $(() => {
     return $cardTile;
   };
 
-
+  // cardTilesArray = res.json(cardData) aka our res.rows from db query
   const renderCardTile = (cardTilesArray) => {
-
+    // Loops through res.rows from cardTiles query
     cardTilesArray.forEach((cardTile) => {
+      // For each data object, we grab its id
+      const card_Id = cardTile.id
+      // calling createCardTile on the data object we make an HTML card ELEMENT
       const $cardTile = createCardTile(cardTile);
+      // prepends the HTML element to the container class which holds all cards
       $(".container").prepend($cardTile);
-    })
 
-    const $openModalButtons = document.querySelectorAll('.container [data-modal-target]');
+      //
+      // ----- AS tiles are created, assign a click event for: -----
+      //
+      $cardTile.on('click', (event) => {
+        event.preventDefault();
 
+        // REQUEST 1: get ONE card data to fill in cardInfo modal
+        $.get(`/api/cards/${card_Id}`, (thisCardInfo) => {
+          // thisCardInfo = json OBJECT
+          fillCardInfoModal(thisCardInfo);
+          $(`#overlay`).addClass('active');
+          // !! add 200ms for animation? !!
+          $(`#card-info-modal`).show();
+        });
 
-    $openModalButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const modal = document.querySelector(button.dataset.modalTarget)
-        openModal(modal);
+        // REQUEST 2: get ALL comments FOR THIS card-tile
+        // $.get(`/api/comments/${card_Id}`, () => {
+        //   /*
+        //   calling something along the lines of
+        //   getCommentsForThisCard();
+
+        //   1. we're receiving an array of comment objects
+        //   2. need a fxn that goes thru each comment OBJECT
+        //   3. create a comment element with a template (just like card tiles)
+        //   4. adds to the comments container in each card INFO view
+        //   5. ba da bing
+        //   6. ba da boom
+        //   */
+        // })
       })
-    });
-
-
-    console.log('open modal buttons array :', $openModalButtons)
-  };
-
-  //
-  // ----- Creating Card-INFO-PopUps -----
-  //
-  const createCardInfoModal = (cardInfo) => {
-    const cardId = cardInfo.id;
-    const title = cardInfo.title;
-    const url = cardInfo.url;
-    const date = cardInfo.created_at;
-    const description = cardInfo.description;
-
-    //
-    // ----- ESCAPE FUNCTION FOR SAFEHTML -----
-    //
-    const escape = (str) => {
-      let div = document.createElement("div");
-      // Must use this function for <div, h1-6, p> tags which are non-editable but unsafeHTML
-      div.appendChild(document.createTextNode(str));
-      return div.innerHTML;
-    };
-
-    const $cardInfoModal = $(`
-      <div class="card-info modal" id="card-info-modal-${cardId}">
-        <div class="modal-header">
-          <h3>${escape(title)}</h3>
-          <button data-close-button class="close-button">&times;</button>
-        </div>
-        <div class="card-date">
-          ${date}
-        </div>
-        <div class="card-description">
-          <h3> ${escape(description)}</h3>
-        </div>
-        <div class="thumbnail">
-          ${escape(url)}
-        </div>
-        <footer>
-          <i class="fa-regular fa-thumbs-up">Like</i>
-          <i class="fa-regular fa-comment">Comments</i>
-          <i class="fa-regular fa-comment">Collect</i>
-        </footer>
-
-        <section class="comment-box">
-          <form class="form">
-            <textarea name="text" placeholder="Add a comment..."></textarea>
-            <div>
-              <button type="submit" class="submit-button">Submit</button>
-            </div>
-          </form>
-        </section>
-
-        <section class="comments">
-          <header class="comments-header">
-            <div class="user-info">
-            <img src=/>
-            <div class="name">Username</div>
-            </div>
-          </header>
-          <p class="comments-content">Comment</p>
-          <div class="comments-footer">
-            <i class="fa-regular fa-thumbs-up">Like</i>
-          </div>
-        </section>
-      </div>
-    `);
-    return $cardInfoModal;
-  };
-
-  const renderCardInfo = (cardDataArray) => {
-    cardDataArray.forEach((cardData) => {
-      const $cardInfoModal = createCardInfoModal(cardData);
-      $('.container').prepend($cardInfoModal)
     })
-    const $closeModalButtons = document.querySelectorAll('.container [data-close-button]');
-    $closeModalButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const modal = button.closest('.modal');
-        closeModal(modal);
-      })
-    });
   };
 
+
   //
-  // ----- Calling the Card Tiles and Info Modals via AJAX -----
+  // ----- INITIAL AJAX request for ALL cards to be displayed -----
   //
-  const getCardTilesAndInfoModals = () => {
+  const getCardTiles = () => {
+    // cardData = res.json(cardTileInfo) aka res.rows from db query
     $.get('/api/cards', (cardData) => {
       $(".container").empty();
       renderCardTile(cardData);
-      renderCardInfo(cardData);
-      // Need to add a function that targets the [data-modal-target] on load BUT only those inside the container class so as not to affect the menu
-
     })
   };
-  getCardTilesAndInfoModals();
+
+  getCardTiles();
 });

@@ -112,19 +112,21 @@ $(() => {
         });
 
         // REQUEST 2: get ALL comments FOR THIS card-tile
-        // $.get(`/api/comments/${card_Id}`, () => {
-        //   /*
-        //   calling something along the lines of
-        //   getCommentsForThisCard();
+        $.get(`/api/comments/${card_Id}`, (commentsData) => {
+          // commentsData = ARRAY of comment objects
+          console.log(`Comment array: `, commentsData);
+          /*
+          calling something along the lines of
+          getCommentsForThisCard();
 
-        //   1. we're receiving an array of comment objects
-        //   2. need a fxn that goes thru each comment OBJECT
-        //   3. create a comment element with a template (just like card tiles)
-        //   4. adds to the comments container in each card INFO view
-        //   5. ba da bing
-        //   6. ba da boom
-        //   */
-        // })
+          1. we're receiving an array of comment objects
+          2. need a fxn that goes thru each comment OBJECT
+          3. create a comment element with a template (just like card tiles)
+          4. adds to the comments container in each card INFO view
+          5. ba da bing
+          6. ba da boom
+          */
+        })
       })
     })
   };

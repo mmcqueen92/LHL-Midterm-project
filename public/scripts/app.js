@@ -101,6 +101,7 @@ $(() => {
     const title = cardData.title;
     const url = cardData.url;
     const date = cardData.created_at;
+    // const numOfLikes =
 
     // ----- ESCAPE FUNCTION FOR SAFEHTML -----
     const escape = (str) => {
@@ -178,9 +179,10 @@ $(() => {
   //
   const getCardTiles = () => {
     // cardData = res.json(cardTileInfo) aka res.rows from db query
-    $.get('/api/cards', (cardData) => {
+    $.get('/api/cards', (cardsData) => {
+      console.log(cardsData);
       $(".container").empty();
-      renderCardTile(cardData);
+      renderCardTile(cardsData);
     })
   };
 

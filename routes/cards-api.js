@@ -4,6 +4,8 @@ const router = express.Router();
 const cardsQuery = require('../db/queries/getAllCards.js');
 // Queries data for ONE card
 const singleCard = require('../db/queries/getThisCard.js');
+// INSERT query for creating new card
+const insertCard = require('../db/queries/createNewCard.js');
 
 // Full route is => /api/cards/
 router.get('/', (req, res) => {
@@ -29,6 +31,21 @@ router.get('/:card_id', (req, res) => {
 });
 
 
+
+//
+// ----- POST routers for /api/cards -----
+//
+
+// Full route => /api/cards/
+router.post('/', (req, res) => {
+  console.log(`request body: `, req.body);
+  insertCard.createNewCard(req.body)
+  .then((cardsInDB) => {
+    console.log(`new card in DB: `, cardsInDB);
+    // after create card, goes back to server.js, get request to "/" which runs all our client scripts like app.js
+    return res.redirect('/');
+  })
+})
 
 
 module.exports = router;

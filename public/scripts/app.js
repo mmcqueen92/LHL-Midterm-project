@@ -18,8 +18,6 @@ $(() => {
     $(`#overlay`).removeClass(`active`);
   });
 
-
-
   //
   // ----- Everything about comments -----
   //

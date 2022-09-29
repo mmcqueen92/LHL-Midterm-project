@@ -18,8 +18,6 @@ $(() => {
     $(`#overlay`).removeClass(`active`);
   });
 
-
-
   //
   // ----- Everything about comments -----
   //
@@ -46,7 +44,7 @@ $(() => {
         </header>
         <p class="comments-content">${escape(commentContent)}</p>
         <div class="comments-footer">
-          <i class="fa-regular fa-thumbs-up">Like</i>
+         <i class="fa-regular fa-thumbs-up"></i>&nbsp;Like<br>
         </div>
       </section>
     `);

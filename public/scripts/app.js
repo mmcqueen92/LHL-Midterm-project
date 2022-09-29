@@ -90,7 +90,7 @@ $(() => {
     $("#card-info-modal").find("div.card-description > h3").text(`${escape(description)}`);
     $("#card-info-modal").find("div.thumbnail").text(`${escape(url)}`);
 
-    // Creates new comment box that posts with cardid CAN BE REFACTORED LATER
+    // Creates new comment box that posts with cardid CAN BE REFACTORED LATER ----------------------------------
     $(".comment-box").empty();
     const $newCommentForm = $(`
     <form class="create-comment-form" action="/api/comments/${cardId}" method="POST">
@@ -111,6 +111,7 @@ $(() => {
         renderCommentboxes(commentsData);
       })
     })
+    // ----------------------------------------------------------------------------------------------------------
   };
 
   //

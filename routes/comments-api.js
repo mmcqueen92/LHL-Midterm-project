@@ -20,11 +20,9 @@ router.get('/:card_id', (req, res) => {
 // Full route => /api/comments/
 
 router.post('/:card_id', (req, res) => {
-  console.log(`request body: `, req.body);
   insertComment.createNewComment(req.params.card_id, req.body)
   .then((commentsInDB) => {
-    console.log(`new comment in DB: `, commentsInDB);
-    return;
+    res.sendStatus(200);
   })
 });
 

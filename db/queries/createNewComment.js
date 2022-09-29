@@ -9,7 +9,6 @@ const createNewComment = (card_id, newCommentObject) => {
   `;
   return db.query(queryString, values)
     .then(data => {
-      console.log('New comment: ', data.rows);
       return data.rows[0];
     });
 };

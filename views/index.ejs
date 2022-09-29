@@ -40,8 +40,8 @@
 
   <!-- CARD-INFO-MODAL HIDDEN BY DEFAULT  -->
   <div class="card-info" id="card-info-modal">
-    <div class="modal-header">
-      <h3>
+    <div class="modal-header" id="card-info-modal-header">
+      <h3 class="card-title">
         <!-- jquery fills here -->
       </h3>
       <button data-close-button class="close-button" id="card-info-modal-close-button">&times;</button>
@@ -50,7 +50,7 @@
       <!-- jquery fills here -->
     </div>
     <div class="card-description">
-      <h3>
+      <h3 id="card-info-description">
        <!-- jquery fills here -->
       </h3>
     </div>
@@ -58,15 +58,15 @@
       <!-- jquery fills here -->
     </div>
     <footer>
-      <i class="fa-regular fa-thumbs-up"></i>&nbsp;Like<br>
-      <i class="fa-regular fa-comment"></i>&nbsp;Comment<br>
-      <i class="fa-regular fa-bookmark"></i>&nbsp;Collect<br>
+      <div class="icons"><i class="fa-solid fa-arrow-up"></i>&nbsp;Like<br></div>
+      <div class="icons"><i class="fa-regular fa-comment"></i>&nbsp;Comments<br></div>
+      <div class="icons"><i class="fa-regular fa-bookmark"></i>&nbsp;Collect<br></div>
     </footer>
 
     <section class="comment-box">
       <form class="form">
         <textarea name="text" placeholder="Add a comment..."></textarea>
-        <div>
+        <div class="new-comment-footer">
           <button type="submit" class="submit-button">Submit</button>
         </div>
       </form>

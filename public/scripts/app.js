@@ -44,7 +44,7 @@ $(() => {
         </header>
         <p class="comments-content">${escape(commentContent)}</p>
         <div class="comments-footer">
-         <i class="fa-regular fa-thumbs-up"></i>&nbsp;Like<br>
+        <div class="icons"><i class="fa-solid fa-arrow-up"></i>&nbsp;Like<br></div>
         </div>
       </section>
     `);
@@ -99,6 +99,7 @@ $(() => {
     const title = cardData.title;
     const url = cardData.url;
     const date = cardData.created_at;
+    // const numOfLikes =
 
     // ----- ESCAPE FUNCTION FOR SAFEHTML -----
     const escape = (str) => {
@@ -176,9 +177,10 @@ $(() => {
   //
   const getCardTiles = () => {
     // cardData = res.json(cardTileInfo) aka res.rows from db query
-    $.get('/api/cards', (cardData) => {
+    $.get('/api/cards', (cardsData) => {
+      console.log(cardsData);
       $(".container").empty();
-      renderCardTile(cardData);
+      renderCardTile(cardsData);
     })
   };
 

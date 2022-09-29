@@ -204,7 +204,7 @@ $(() => {
           $(`#card-info-modal`).show();
         });
 
-        // REQUEST 2: get ALL comments FOR THIS card-tile and enable posting comments
+        // REQUEST 2: get ALL comments FOR THIS card-tile
         $.get(`/api/comments/${card_Id}`, (commentsData) => {
           // commentsData = ARRAY of comment objects
           // empties the comments section/container that holds all comments
@@ -215,23 +215,6 @@ $(() => {
       })
     })
   };
-
-  // // Add 'click' listener to submit comment button
-  // $('#submit-comment-button').on('click', (event) => {
-
-  //   // On a click of the comment submit button, I need the info from this particular
-  //   // filled in cardInfo-modal
-
-  //   postComment()
-  // })
-  // //
-  // // ----- Post Comment -----
-  // //
-  // const postComment = () => {
-  //   // this gets run when we click on the submit comment button
-  // };
-
-
 
   //
   // ----- INITIAL AJAX request for ALL cards to be displayed -----

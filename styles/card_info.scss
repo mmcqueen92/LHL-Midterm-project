@@ -99,7 +99,7 @@
   }
 
   .comments {
-    border: 1px solid black;
+    // border: 1px solid black;
     margin: 2% 5% 2% 5%;
   }
 
@@ -120,6 +120,11 @@
   .comments-footer {
     display: flex;
     padding: 2%;
+  }
+
+  .user-comment {
+    border: 1px solid black;
+    margin-top: 1.25rem;
   }
 
   .user-info {

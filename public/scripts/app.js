@@ -46,7 +46,7 @@ $(() => {
         </header>
         <p class="comments-content">${escape(commentContent)}</p>
         <div class="comments-footer">
-          <i class="fa-regular fa-thumbs-up">Like</i>
+        <div class="icons"><i class="fa-solid fa-arrow-up"></i>&nbsp;Like<br></div>
         </div>
       </section>
     `);

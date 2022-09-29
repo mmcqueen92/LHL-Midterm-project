@@ -11,7 +11,8 @@
   width: 60%;
   flex-direction: column;
   background-color: #DEF2F1;
-  border-radius: 16px;
+  overflow-y: scroll;
+  max-height: calc(100% - 160px);
 
   button {
     display: flex;

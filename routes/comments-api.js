@@ -25,8 +25,7 @@ router.post('/:card_id', (req, res) => {
   insertComment.createNewComment(req.params.card_id, req.body)
   .then((commentsInDB) => {
     console.log(`new comment in DB: `, commentsInDB);
-    //What happens here?
-    //res.render(comment boxes)?
+    return;
   })
 });
 

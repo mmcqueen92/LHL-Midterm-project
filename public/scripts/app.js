@@ -89,17 +89,28 @@ $(() => {
     $("#card-info-modal").find("div.card-date").text(`${date}`);
     $("#card-info-modal").find("div.card-description > h3").text(`${escape(description)}`);
     $("#card-info-modal").find("div.thumbnail").text(`${escape(url)}`);
-    // $("#card-info-modal").find("div.thumbnail").text(`${escape(cardId)}`);
+
+    // Creates new comment box that posts with cardid CAN BE REFACTORED LATER
     $(".comment-box").empty();
     const $newCommentForm = $(`
     <form class="create-comment-form" action="/api/comments/${cardId}" method="POST">
     <textarea name="text" placeholder="Add a comment..."></textarea>
     <div class="new-comment-footer">
-      <button type="submit" class="submit-button">Submit</button>
+      <button type="submit" class="submit-button" id="new-comment-submit">Submit</button>
     </div>
   </form>
     `)
     $(".comment-box").prepend($newCommentForm);
+    $("#new-comment-submit").on("click", () => {
+      $.get(`/api/comments/${card_Id}`, (commentsData) => {
+        // commentsData = ARRAY of comment objects
+        console.log(`Comment array: `, commentsData);
+        // empties the comments section/container that holds all comments
+        $(".comments").empty();
+        // create comment boxes, and prepends it to the container
+        renderCommentboxes(commentsData);
+      })
+    })
   };
 
   //

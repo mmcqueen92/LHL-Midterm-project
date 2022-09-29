@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
   .then((cardsInDB) => {
     console.log(`new card in DB: `, cardsInDB);
     // after create card, goes back to server.js, get request to "/" which runs all our client scripts like app.js
-    res.redirect('/');
+    return res.redirect('/');
   })
 })
 

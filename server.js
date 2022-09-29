@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -24,6 +25,17 @@ app.use(
     isSass: false, // false => scss, true => sass
   })
 );
+
+// CookieSession for encrypted cookies
+app.use(cookieSession({
+  name: 'session',
+  keys: ["superSecretCookieSession"],
+
+  // Cookie Options
+  maxAge: 10 * 60 * 1000 // 10 mins
+}));
+
+
 app.use(express.static('public'));
 
 // Separated Routes for each Resource
@@ -49,6 +61,11 @@ app.use('/api/comments', commentsRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/login/:id', (req, res) => {
+  req.session.user_id = req.params.id;
+  res.redirect('/');
 });
 
 app.listen(PORT, () => {

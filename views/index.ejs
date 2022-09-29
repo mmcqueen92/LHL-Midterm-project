@@ -64,10 +64,10 @@
     </footer>
 
     <section class="comment-box">
-      <form class="create-comment-form" action="/api/comments" method="POST">
+      <form class="create-comment-form" action="/api/comments/:card_id" method="POST">
         <textarea name="text" placeholder="Add a comment..."></textarea>
         <div class="new-comment-footer">
-          <button type="submit" class="submit-button">Submit</button>
+          <button type="submit" class="submit-button" id="submit-comment-button">Submit</button>
         </div>
       </form>
     </section>

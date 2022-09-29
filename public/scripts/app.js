@@ -91,27 +91,50 @@ $(() => {
     $("#card-info-modal").find("div.thumbnail").text(`${escape(url)}`);
 
     // Creates new comment box that posts with cardid CAN BE REFACTORED LATER ----------------------------------
-    $(".comment-box").empty();
-    const $newCommentForm = $(`
-    <form class="create-comment-form" action="/api/comments/${cardId}" method="POST">
-    <textarea name="text" placeholder="Add a comment..."></textarea>
-    <div class="new-comment-footer">
-      <button type="submit" class="submit-button" id="new-comment-submit">Submit</button>
-    </div>
-  </form>
-    `)
-    $(".comment-box").prepend($newCommentForm);
-    $("#new-comment-submit").on("click", () => {
-      $.get(`/api/comments/${card_Id}`, (commentsData) => {
-        // commentsData = ARRAY of comment objects
-        console.log(`Comment array: `, commentsData);
-        // empties the comments section/container that holds all comments
-        $(".comments").empty();
-        // create comment boxes, and prepends it to the container
-        renderCommentboxes(commentsData);
+    // 1. as we fill form, we change the route of the post comment form
+    $('.create-comment-form').attr('action', `/api/comments/${cardId}`);
+    // 2. we attach a click listener on submit button - ON CLICK
+    $('#submit-comment-button').on('submit', (event) => {
+      event.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: `/api/comments/${cardId}`,
+        data: $(`.create-comment-form`).find('textarea').text(),
+        // !! THIS SUCCESS IS NOT GETTING CALLED !!
+        success: () => {
+          console.log(`post succeeded: sending get request...`)
+          $.get(`/api/comments/${cardId}`, (commentsData) => {
+            // 2.3) it SHOULD send a GET request for all comments data again
+            console.log('Should see this after new comment made');
+            $(`.comments`).empty(); // empty it so we can reload with new comment
+            // 2.4) also invoke the renderComments(commentsData) function
+            renderCommentboxes(commentsData);
+          })
+        },
+        dataType: 'json'
       })
-    })
-    // ----------------------------------------------------------------------------------------------------------
+    });
+  // $(".comment-box").empty();
+  //   const $newCommentForm = $(`
+  //   <form class="create-comment-form" action="/api/comments/${cardId}" method="POST">
+  //   <textarea name="text" placeholder="Add a comment..."></textarea>
+  //   <div class="new-comment-footer">
+  //     <button type="submit" class="submit-button" id="new-comment-submit">Submit</button>
+  //   </div>
+  // </form>
+  //   `)
+  //   $(".comment-box").prepend($newCommentForm);
+  //   $("#new-comment-submit").on("click", () => {
+  //     $.get(`/api/comments/${card_Id}`, (commentsData) => {
+  //       // commentsData = ARRAY of comment objects
+  //       console.log(`Comment array: `, commentsData);
+  //       // empties the comments section/container that holds all comments
+  //       $(".comments").empty();
+  //       // create comment boxes, and prepends it to the container
+  //       renderCommentboxes(commentsData);
+  //     })
+  //   })
+  // ----------------------------------------------------------------------------------------------------------
   };
 
   //
@@ -181,10 +204,9 @@ $(() => {
           $(`#card-info-modal`).show();
         });
 
-        // REQUEST 2: get ALL comments FOR THIS card-tile
+        // REQUEST 2: get ALL comments FOR THIS card-tile and enable posting comments
         $.get(`/api/comments/${card_Id}`, (commentsData) => {
           // commentsData = ARRAY of comment objects
-          console.log(`Comment array: `, commentsData);
           // empties the comments section/container that holds all comments
           $(".comments").empty();
           // create comment boxes, and prepends it to the container
@@ -194,6 +216,22 @@ $(() => {
     })
   };
 
+  // // Add 'click' listener to submit comment button
+  // $('#submit-comment-button').on('click', (event) => {
+
+  //   // On a click of the comment submit button, I need the info from this particular
+  //   // filled in cardInfo-modal
+
+  //   postComment()
+  // })
+  // //
+  // // ----- Post Comment -----
+  // //
+  // const postComment = () => {
+  //   // this gets run when we click on the submit comment button
+  // };
+
+
 
   //
   // ----- INITIAL AJAX request for ALL cards to be displayed -----
@@ -201,7 +239,6 @@ $(() => {
   const getCardTiles = () => {
     // cardData = res.json(cardTileInfo) aka res.rows from db query
     $.get('/api/cards', (cardsData) => {
-      console.log(cardsData);
       $(".container").empty();
       renderCardTile(cardsData);
     })

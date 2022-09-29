@@ -5,7 +5,6 @@ const insertComment = require('../db/queries/createNewComment.js');
 
 // Full route is => /api/comments/:card_id
 router.get('/:card_id', (req, res) => {
-  console.log("AJAX request FROM card id: ", req.params.card_id);
   commentsQuery.getComments(req.params.card_id)
   // commentsData = res.rows from db query
   .then((commentsData) => {

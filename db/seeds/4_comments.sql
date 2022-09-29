@@ -10,10 +10,4 @@ VALUES
 (2, 8, 'Very helpful for coding bootcamps, lots of great tips!'),
 (2, 9, 'Mmm coffee!'),
 (4, 1, 'I want to be Nally when I grow up!'),
-(4, 2, 'Pop ups are cool'),
-(4, 7, 'Medium roast is the best!'),
-(4, 7, 'Medium roast is the bestest!'),
-(4, 7, 'Medium roast is the bestestest!'),
-(4, 7, 'Medium roast is the bestestestest!'),
-(4, 7, 'Medium roast is the bestestestestest!'),
-(4, 7, 'Medium roast is the bestestestestestest!')
+(4, 2, 'Pop ups are cool');

@@ -45,7 +45,7 @@ router.post('/', (req, res) => {
     // after create card, goes back to server.js, get request to "/" which runs all our client scripts like app.js
     return res.redirect('/');
   })
-})
+});
 
 
 module.exports = router;

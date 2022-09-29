@@ -33,6 +33,21 @@
 <body>
   <%- include('get-started') %>
   <%- include('header') %>
+  <div class="container-for-collectionTabs-and-newCollectionButton">
+    <!-- The set of buttons should always be to the left of the plus symbol -->
+    <div class="container-for-collectionTabs">
+      <button class="button-for-collectionTab"> JQuery here pls </button>
+      <button class="button-for-collectionTab"> JQuery here pls </button>
+      <button class="button-for-collectionTab"> JQuery here pls </button>
+    </div>
+    <!-- The addCollection button next to the other set of buttons-->
+    <div class="container-for-newCollectionButton">
+      <button class="button-for-newCollection">
+        <i class="fa-duotone fa-plus"></i>
+      </button>
+    </div>
+  </div>
+  <!-- THE CONTAINER CLASS BELOW IS UBER IMPORTANT - HOLDS ALL CARDS -->
   <div class="container">
   </div>
   <%-include('create-card')%>

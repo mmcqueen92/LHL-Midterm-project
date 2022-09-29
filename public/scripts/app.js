@@ -24,6 +24,18 @@ $(() => {
     // If user is logged in - GET collections/:id
     $.get('/api/collections', (collectionsData) => {
       console.log(collectionsData);
+      // collections div.show()
+
+      // collectionsData.forEach(collection => {
+      //   $(`.container-for-collectionTabs`)./* jquery add button element .val().html()? jquery change the text of that button to be collection.name */
+      // })
+
+      
+
+
+
+
+
     })
   })
 

@@ -6,7 +6,9 @@ const collectionsQuery = require('../db/queries/getCollections.js');
 router.get('/', (req, res) => {
   // the cookie session notes that a user is logged in, that's their user-id
   const user_id = req.session.user_id;
-  // if (!req.session.user_id) return... some sort of fail to check in APP.JS
+  if (!user_id) {
+    res.send(`error: 404`);
+  }
 
   // else continue to query
   if (user_id) {

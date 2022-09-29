@@ -18,6 +18,54 @@ $(() => {
     $(`#overlay`).removeClass(`active`);
   });
 
+
+
+  //
+  // ----- Everything about comments -----
+  //
+  const createCommentBox = (commentData) => {
+    const username = commentData.name;
+    const commentUserId = commentData.user_id;
+    const commentCardId = commentData.card_id;
+    const commentContent = commentData.content;
+
+    // ----- ESCAPE FUNCTION FOR SAFEHTML -----
+    const escape = (str) => {
+      let div = document.createElement("div");
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    };
+
+    const $commentBox = $(`
+      <section class="user-comment">
+        <header class="comments-header">
+          <div class="user-info">
+            <img src=/>
+            <div class="name">${escape(username)}</div>
+          </div>
+        </header>
+        <p class="comments-content">${escape(commentContent)}</p>
+        <div class="comments-footer">
+          <i class="fa-regular fa-thumbs-up">Like</i>
+        </div>
+      </section>
+    `);
+
+    return $commentBox;
+  };
+
+  const renderCommentboxes = (commentsArray) => {
+    // Loops thru the res.rows array of commentData
+    commentsArray.forEach((commentData) => {
+      const comment_id = commentData.id
+
+      // takes the data, turns it into HTML comment box element
+      const $commentBox = createCommentBox(commentData);
+      // prepending each comment box to the top of <section class="comments">
+      $(`.comments`).prepend($commentBox);
+    });
+  };
+
   //
   // ----- Fills in correct data to the empty hidden InfoModal -----
   //
@@ -53,6 +101,7 @@ $(() => {
     const title = cardData.title;
     const url = cardData.url;
     const date = cardData.created_at;
+    // const numOfLikes =
 
     // ----- ESCAPE FUNCTION FOR SAFEHTML -----
     const escape = (str) => {
@@ -112,19 +161,14 @@ $(() => {
         });
 
         // REQUEST 2: get ALL comments FOR THIS card-tile
-        // $.get(`/api/comments/${card_Id}`, () => {
-        //   /*
-        //   calling something along the lines of
-        //   getCommentsForThisCard();
-
-        //   1. we're receiving an array of comment objects
-        //   2. need a fxn that goes thru each comment OBJECT
-        //   3. create a comment element with a template (just like card tiles)
-        //   4. adds to the comments container in each card INFO view
-        //   5. ba da bing
-        //   6. ba da boom
-        //   */
-        // })
+        $.get(`/api/comments/${card_Id}`, (commentsData) => {
+          // commentsData = ARRAY of comment objects
+          console.log(`Comment array: `, commentsData);
+          // empties the comments section/container that holds all comments
+          $(".comments").empty();
+          // create comment boxes, and prepends it to the container
+          renderCommentboxes(commentsData);
+        })
       })
     })
   };
@@ -135,9 +179,10 @@ $(() => {
   //
   const getCardTiles = () => {
     // cardData = res.json(cardTileInfo) aka res.rows from db query
-    $.get('/api/cards', (cardData) => {
+    $.get('/api/cards', (cardsData) => {
+      console.log(cardsData);
       $(".container").empty();
-      renderCardTile(cardData);
+      renderCardTile(cardsData);
     })
   };
 

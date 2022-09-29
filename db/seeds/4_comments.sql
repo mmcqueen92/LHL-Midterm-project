@@ -8,4 +8,7 @@ VALUES
 (1, 6, 'Wait, so what is Git Gud?'),
 (2, 7, 'At least I''m not the only one who didn''t know how to do this!'),
 (2, 8, 'Very helpful for coding bootcamps, lots of great tips!'),
-(2, 9, 'Mmm coffee!');
+(2, 9, 'Mmm coffee!'),
+(4, 1, 'I want to be Nally when I grow up!'),
+(4, 2, 'Pop ups are cool'),
+(4, 9, 'Medium roast is the best!');

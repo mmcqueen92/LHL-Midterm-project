@@ -4,25 +4,25 @@
     <header>Create Your Card</header>
     <button data-close-button class="close-button">&times;</button>
   </div>
-  <form class="create-card-form" action="/cards" method="POST">
+  <form class="create-card-form" action="/api/cards" method="POST">
     <div class="create-card-input">
       <label for="title-input">Title:</label>
-      <input type="text" name="title-input" placeholder="Title">
+      <input type="text" name="title" placeholder="Title">
     </div>
 
     <div class="create-card-input">
       <label for="desc-input">Description:</label>
-      <input type="text" name="desc-input" placeholder="Description">
+      <input type="text" name="description" placeholder="Description">
     </div>
 
     <div class="create-card-input">
       <label for="url-input">url:</label>
-      <input type="text" name="url-input" placeholder="url">
+      <input type="text" name="url" placeholder="url">
     </div>
 
     <div class="create-card-input">
       <label for="thumbnail-input">Thumbnail:</label>
-      <input type="text" name="thumbnail-input" placeholder="Thumbnail">
+      <input type="text" name="thumbnail" placeholder="Thumbnail">
     </div>
     <div>
       <button type="submit" id="submit-new-card">Create Card</button>

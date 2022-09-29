@@ -18,6 +18,15 @@ $(() => {
     $(`#overlay`).removeClass(`active`);
   });
 
+  $(`#my-collections-button`).on('click', (event) => {
+    event.preventDefault();
+    // If user is not logged in - redirect to get started (pop up appears)
+    // If user is logged in - GET collections/:id
+    $.get('/api/collections', (collectionsData) => {
+      console.log(collectionsData);
+    })
+  })
+
   //
   // ----- Everything about comments -----
   //

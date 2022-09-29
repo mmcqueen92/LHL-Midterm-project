@@ -8,9 +8,9 @@
 
     <div class="login-register">
     <header id="login-header">Log in</header>
-    <form method="post" action="/login">
+    <form method="GET" action="/login/:id">
       <div class="login-form">
-        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="text" name="id" id="id" placeholder="Email">
       </div>
       <div class="login-form">
         <input type="text" name="password" id="password" placeholder="Password">

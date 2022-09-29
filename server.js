@@ -65,8 +65,14 @@ app.get('/', (req, res) => {
 
 app.get('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
+  console.log(req.session.user_id);
   res.redirect('/');
 });
+
+// app.post('/register/:id', (req, res) => {
+//   req.session.user_id = req.params.id;
+//   res.post('/* send them to a route that inserts them into usersDB */')
+// })
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

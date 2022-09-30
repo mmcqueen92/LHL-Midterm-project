@@ -10,8 +10,11 @@ $(() => {
   $(`#log-out-button`).hide();
 
 
-  $(`#login-with-id`).on('submit', (event) => {
+  $(`#login-button`).on('click', (event) => {
     event.preventDefault();
+    $(`#overlay`).removeClass(`active`);
+    $(`#get-started`).removeClass('active');
+
     const user_id = $(`#login-with-id input`).val()
     // console.log(`user_id from form is: `, user_id);
     $.get(`/login/${user_id}`).done(() => {
@@ -23,6 +26,7 @@ $(() => {
     event.preventDefault();
     $.post(`/logout`).done(() => {
       $(`#log-out-button`).hide();
+      $(`#collections-menu`).hide(200);
     })
   })
   //
@@ -66,6 +70,8 @@ $(() => {
           })
         })
       })
+    }).done(() => {
+      $(`#collections-menu`).show(200);
     })
 
 

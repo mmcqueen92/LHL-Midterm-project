@@ -18,6 +18,38 @@ $(() => {
     $(`#overlay`).removeClass(`active`);
   });
 
+  // ON CLICKING MY COLLECTIONS
+  $(`#my-collections-button`).on('click', (event) => {
+    event.preventDefault();
+    // I want ALL collections names for this user
+    $.get('/api/collections', (collectionsData) => {
+      // if not logged in, the router just returned and exited
+      console.log(collectionsData);
+
+
+      // for all the collections names, loop thru and create a button for each
+      collectionsData.forEach(collection => {
+        // at the same time, filling the button text with the name of collection
+        const $collectionButton = $(`<button class="button-for-collectionTab" type="button" id="collection-${collection.id}">Jquery</button>`).text(collection.name);
+        // appends those buttons to our empty container that should be hidden
+        $(`.container-for-collectionTabs`).append($collectionButton);
+        // collections div.show() // trying to show the container now
+        // Assigns unique id to those buttons, on submitting those buttons...
+        $(`#collection-${collection.id}`).on('click', () => {
+          // get back an array of card infos for the cards IN THIS collection
+          $.get(`/api/collections/${collection.id}`, (cardsInThisCollection) => {
+            console.log(`FROM APP.JS => cardsInThisCollection: `, cardsInThisCollection);
+            // call renderCardTile which makes the tiles and fills infoModal on click
+            $(`.container`).empty();
+            renderCardTile(cardsInThisCollection);
+          })
+        })
+      })
+    })
+
+
+  })
+
   //
   // ----- Everything about comments -----
   //
@@ -60,7 +92,7 @@ $(() => {
       // takes the data, turns it into HTML comment box element
       const $commentBox = createCommentBox(commentData);
       // prepending each comment box to the top of <section class="comments">
-      $(`.comments`).prepend($commentBox);
+      $(`.comments`).append($commentBox);
     });
   };
 
@@ -89,6 +121,29 @@ $(() => {
     $("#card-info-modal").find("div.card-date").text(`${date}`);
     $("#card-info-modal").find("div.card-description > h3").text(`${escape(description)}`);
     $("#card-info-modal").find("div.thumbnail").text(`${escape(url)}`);
+
+    // Creates new comment box that posts with cardid CAN BE REFACTORED LATER ----------------------------------
+    // 1. as we fill form, we change the route of the post comment form
+    //$('.create-comment-form').attr('action', `/api/comments/${cardId}`);
+    // 2. we attach a click listener on submit button - ON CLICK
+    $('#submit-comment-button').on('submit', (event) => {
+      event.preventDefault();
+      console.log($(`textarea`).val());
+
+      $.post( `/api/comments/${cardId}`, $('#submit-comment-button').serialize() )
+        .done(() => {
+          $.get(`/api/comments/${cardId}`, (allCommentsData) => {
+            $(`.create-comment-form textarea`).val('');
+            // console.log('This happens 1st')
+            $(`.comments`).empty();
+            // console.log('This happens 2nd')
+            renderCommentboxes(allCommentsData);
+            // console.log('New comments rendered')
+          })
+        });
+
+
+    });
   };
 
   //
@@ -116,7 +171,7 @@ $(() => {
             <h3 class="card-tile-title">${escape(title)}</h3>
           </div>
           <div class="card-date">
-            ${date}
+          ${date}
           </div>
           <div class="thumbnail">
             ${escape(url)}
@@ -131,6 +186,7 @@ $(() => {
     `);
     return $cardTile;
   };
+
 
   // cardTilesArray = res.json(cardData) aka our res.rows from db query
   const renderCardTile = (cardTilesArray) => {
@@ -161,7 +217,6 @@ $(() => {
         // REQUEST 2: get ALL comments FOR THIS card-tile
         $.get(`/api/comments/${card_Id}`, (commentsData) => {
           // commentsData = ARRAY of comment objects
-          console.log(`Comment array: `, commentsData);
           // empties the comments section/container that holds all comments
           $(".comments").empty();
           // create comment boxes, and prepends it to the container
@@ -171,18 +226,17 @@ $(() => {
     })
   };
 
-
   //
   // ----- INITIAL AJAX request for ALL cards to be displayed -----
   //
   const getCardTiles = () => {
     // cardData = res.json(cardTileInfo) aka res.rows from db query
     $.get('/api/cards', (cardsData) => {
-      console.log(cardsData);
       $(".container").empty();
       renderCardTile(cardsData);
     })
   };
 
   getCardTiles();
+
 });

@@ -11,14 +11,15 @@
     width: 100%;
     height: 100%;
     flex-direction: column;
-    background-color: #DEF2F1;
+    background-color: #3AAFA9;
     border-radius: 16px;
   }
 
   .card-title {
     display: flex;
     justify-content: left;
-    border: 1px solid black;
+    background-color: #feffff;
+    border-radius: 16px;
     margin: 5% 5% 0% 5%;
     padding: 5%;
     height: 30%;
@@ -31,7 +32,8 @@
   .card-date {
     display: flex;
     justify-content: left;
-    border: 1px solid black;
+    background-color: #feffff;
+    border-radius: 16px;
     margin: 2% 5% 0% 5%;
     padding: 3%;
   }
@@ -39,9 +41,9 @@
   .thumbnail {
     display: flex;
     justify-content: center;
-    border: 1px solid black;
     margin: 5% 5% 5% 5%;
     padding: 20%;
+    background-color: #feffff;
     border-radius: 16px;
     height: 45%;
   }

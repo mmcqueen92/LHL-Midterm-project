@@ -39,13 +39,13 @@ router.get('/:card_id', (req, res) => {
 // Full route => /api/cards/
 router.post('/', (req, res) => {
   console.log(`request body: `, req.body);
-  insertCard.createNewCard(req.body)
+  insertCard.createNewCard(req.body, req.session.user_id)
   .then((cardsInDB) => {
     console.log(`new card in DB: `, cardsInDB);
     // after create card, goes back to server.js, get request to "/" which runs all our client scripts like app.js
     return res.redirect('/');
   })
-})
+});
 
 
 module.exports = router;

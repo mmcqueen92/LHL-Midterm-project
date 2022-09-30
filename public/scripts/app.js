@@ -96,7 +96,6 @@ $(() => {
     // 2. we attach a click listener on submit button - ON CLICK
     $('#submit-comment-button').on('submit', (event) => {
       event.preventDefault();
-      console.log('I clicked this submit button');
       console.log($(`textarea`).val());
 
       $.post( `/api/comments/${cardId}`, $('#submit-comment-button').serialize() )
@@ -140,7 +139,7 @@ $(() => {
             <h3 class="card-tile-title">${escape(title)}</h3>
           </div>
           <div class="card-date">
-            ${date}
+          ${date}
           </div>
           <div class="thumbnail">
             ${escape(url)}
@@ -155,6 +154,7 @@ $(() => {
     `);
     return $cardTile;
   };
+
 
   // cardTilesArray = res.json(cardData) aka our res.rows from db query
   const renderCardTile = (cardTilesArray) => {

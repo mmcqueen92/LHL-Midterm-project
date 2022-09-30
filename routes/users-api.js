@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/users');
 const getAllCards = require('../db/queries/getAllCards');
+const registerUser = require('../db/queries/registerUser');
 
 //GET REQUESTS
 
@@ -25,6 +26,18 @@ router.get('/', (req, res) => {
         .json({ error: err.message });
     });
 });
+
+router.post('/register/:email', (req, res) => {
+  registerUser.registerUser(req.params.email)
+    .then((data) => {
+      res.redirect('/');
+    })
+    .catch(err => {
+      res
+        .json({error: err.message});
+    })
+})
+
 
 
 // GET renderCard

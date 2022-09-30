@@ -50,6 +50,26 @@ $(() => {
 
   })
 
+
+
+
+  // REGISTER USER ON SUBMIT BUTTON CLICK
+  $('#get-started-register').on('submit', (event) => {
+    event.preventDefault();
+    const $email = $(`#email`).serialize();
+
+    $.post(`/api/users/register/${$email}`, () => {
+      $('#get-started').removeClass('active')
+      $('#overlay').removeClass('active')
+      $('#email').val('');
+
+    })
+      .done();
+  });
+  // -------------------------------------------
+
+
+
   //
   // ----- Everything about comments -----
   //
@@ -130,7 +150,7 @@ $(() => {
       event.preventDefault();
       console.log($(`textarea`).val());
 
-      $.post( `/api/comments/${cardId}`, $('#submit-comment-button').serialize() )
+      $.post(`/api/comments/${cardId}`, $('#submit-comment-button').serialize())
         .done(() => {
           $.get(`/api/comments/${cardId}`, (allCommentsData) => {
             $(`.create-comment-form textarea`).val('');

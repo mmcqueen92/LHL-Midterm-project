@@ -26,6 +26,7 @@ $(() => {
     event.preventDefault();
     $.post(`/logout`).then(() => {
       $(`#log-out-button`).hide();
+      $(`#collections-menu`).hide(200);
     })
   })
   //
@@ -69,6 +70,8 @@ $(() => {
           })
         })
       })
+    }).done(() => {
+      $(`#collections-menu`).show(200);
     })
 
 

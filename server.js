@@ -75,7 +75,7 @@ app.post('/logout', (req, res) => {
   // nullifies session cookies
   req.session = null;
   // console.log(`if we see this, session should = null`)
-  res.render('index');
+  res.redirect('/');
 });
 
 app.get('/', (req, res) => {

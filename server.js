@@ -61,24 +61,26 @@ app.use('/api/collections', collectionsRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+
 
 // Logging In - via url hack or login button, no actual auth tho
 app.get('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
-  console.log("the session id is: ", req.session.user_id);
+  // console.log("the session id is: ", req.session.user_id);
   res.redirect('/');
 });
 
 // Logging out - via url hack or logout button
 app.post('/logout', (req, res) => {
   // nullifies session cookies
-  req.session = null
-  return res.redirect('/');
+  req.session = null;
+  // console.log(`if we see this, session should = null`)
+  res.render('index');
 });
 
+app.get('/', (req, res) => {
+  res.render('index');
+});
 // app.post('/register/:id', (req, res) => {
 //   req.session.user_id = req.params.id;
 //   res.post('/* send them to a route that inserts them into usersDB */')

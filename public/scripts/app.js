@@ -13,15 +13,17 @@ $(() => {
   $(`#login-with-id`).on('submit', (event) => {
     event.preventDefault();
     const user_id = $(`#login-with-id input`).val()
-    console.log(`user_id from form is: `, user_id);
+    // console.log(`user_id from form is: `, user_id);
     $.get(`/login/${user_id}`).done(() => {
       $(`#log-out-button`).show();
     });
   })
 
-  $(`#log-out-button form`).on('submit', (event) => {
+  $(`#log-out-button`).on('click', (event) => {
     event.preventDefault();
-    $.post(`/logout`);
+    $.post(`/logout`).then(() => {
+      $(`#log-out-button`).hide();
+    })
   })
   //
   // ----- Closes Hardcoded Info Modal -----

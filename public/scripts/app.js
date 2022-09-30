@@ -18,6 +18,38 @@ $(() => {
     $(`#overlay`).removeClass(`active`);
   });
 
+  // ON CLICKING MY COLLECTIONS
+  $(`#my-collections-button`).on('click', (event) => {
+    event.preventDefault();
+    // I want ALL collections names for this user
+    $.get('/api/collections', (collectionsData) => {
+      // if not logged in, the router just returned and exited
+      console.log(collectionsData);
+
+
+      // for all the collections names, loop thru and create a button for each
+      collectionsData.forEach(collection => {
+        // at the same time, filling the button text with the name of collection
+        const $collectionButton = $(`<button class="button-for-collectionTab" type="button" id="collection-${collection.id}">Jquery</button>`).text(collection.name);
+        // appends those buttons to our empty container that should be hidden
+        $(`.container-for-collectionTabs`).append($collectionButton);
+        // collections div.show() // trying to show the container now
+        // Assigns unique id to those buttons, on submitting those buttons...
+        $(`#collection-${collection.id}`).on('click', () => {
+          // get back an array of card infos for the cards IN THIS collection
+          $.get(`/api/collections/${collection.id}`, (cardsInThisCollection) => {
+            console.log(`FROM APP.JS => cardsInThisCollection: `, cardsInThisCollection);
+            // call renderCardTile which makes the tiles and fills infoModal on click
+            $(`.container`).empty();
+            renderCardTile(cardsInThisCollection);
+          })
+        })
+      })
+    })
+
+
+  })
+
   //
   // ----- Everything about comments -----
   //
@@ -206,4 +238,5 @@ $(() => {
   };
 
   getCardTiles();
+
 });

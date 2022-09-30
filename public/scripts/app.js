@@ -178,7 +178,13 @@ $(() => {
           ${date}
           </div>
           <div class="thumbnail">
-            ${escape(url)}
+          <video controls width="auto" height="auto">
+    <source src="${escape(url)}"
+            type="video/mp4">
+
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
           </div>
           <footer>
             <div class="icons"><i class="fa-solid fa-arrow-up"></i>&nbsp;Like<br></div>

@@ -286,7 +286,6 @@ $(() => {
   const getCardTiles = () => {
     // cardData = res.json(cardTileInfo) aka res.rows from db query
     $.get('/api/cards', (cardsData) => {
-      console.log('getCardTiles??', cardsData);
       $(".container").empty();
       renderCardTile(cardsData);
     })

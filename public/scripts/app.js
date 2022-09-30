@@ -1,9 +1,28 @@
 //
 // ----- JQuery Document Ready -----
-//
 $(() => {
   console.log(`app.js is working`);
+  //
+  // ----- User Log-In/Log-Out -----
+  //
 
+  // Initially hide the logout button on load
+  $(`#log-out-button`).hide();
+
+
+  $(`#login-with-id`).on('submit', (event) => {
+    event.preventDefault();
+    const user_id = $(`#login-with-id input`).val()
+    console.log(`user_id from form is: `, user_id);
+    $.get(`/login/${user_id}`).done(() => {
+      $(`#log-out-button`).show();
+    });
+  })
+
+  $(`#log-out-button form`).on('submit', (event) => {
+    event.preventDefault();
+    $.post(`/logout`);
+  })
   //
   // ----- Closes Hardcoded Info Modal -----
   //

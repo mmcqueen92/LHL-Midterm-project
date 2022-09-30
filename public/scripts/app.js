@@ -203,10 +203,13 @@ $(() => {
       // ----- AS tiles are created, assign a click event for: -----
       //
       $cardTile.on('click', (event) => {
-        event.preventDefault();
+        //console.log("does this click?");
+        //event.preventDefault();
+        console.log('event prevent default');
 
         // REQUEST 1: get ONE card data to fill in cardInfo modal
         $.get(`/api/cards/${card_Id}`, (thisCardInfo) => {
+          console.log('this card info', thisCardInfo);
           // thisCardInfo = json OBJECT
           fillCardInfoModal(thisCardInfo);
           $(`#overlay`).addClass('active');
@@ -232,6 +235,7 @@ $(() => {
   const getCardTiles = () => {
     // cardData = res.json(cardTileInfo) aka res.rows from db query
     $.get('/api/cards', (cardsData) => {
+      console.log('getCardTiles??', cardsData);
       $(".container").empty();
       renderCardTile(cardsData);
     })

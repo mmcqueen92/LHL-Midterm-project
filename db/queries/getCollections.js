@@ -4,7 +4,7 @@ const getCollections = (user_id) => {
   // Store this as a $1,2,3 template value to protect against sql injections
   const values = [user_id];
   const queryString = `
-    SELECT name
+    SELECT name, id
     FROM collections
     WHERE collections.user_id = $1;
   `;

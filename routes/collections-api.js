@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const collectionsQuery = require('../db/queries/getCollections.js');
+const getCardsForCollection = require(`../db/queries/getSingleCollection.js`)
 
 // Full route => /api/collections/
 router.get('/', (req, res) => {
@@ -21,5 +22,15 @@ router.get('/', (req, res) => {
 
 })
 
+
+// Full route => /api/collections/:collection_id
+router.get(`/:collection_id`, (req, res) => {
+  const collection_id = req.params.collection_id;
+  getCardsForCollection.getSingleCollection(collection_id)
+  .then((cardsInCollection) => {
+    console.log(`cardsInCollection: `, cardsInCollection);
+    res.json(cardsInCollection);
+  })
+})
 
 module.exports = router;

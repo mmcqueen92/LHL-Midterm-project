@@ -122,17 +122,20 @@ $(() => {
     $("#card-info-modal").find("div.card-description > h3").text(`${escape(description)}`);
     $("#card-info-modal").find("div.thumbnail").text(`${escape(url)}`);
 
-    // Creates new comment box that posts with cardid CAN BE REFACTORED LATER ----------------------------------
-    // 1. as we fill form, we change the route of the post comment form
-    //$('.create-comment-form').attr('action', `/api/comments/${cardId}`);
-    // 2. we attach a click listener on submit button - ON CLICK
+    //
+    // ----- Submitting Comments in the cardInfo Modal -----
+    //
+
+    // this id is actually a form, not a button - we had issues and had to move it
     $('#submit-comment-button').on('submit', (event) => {
       event.preventDefault();
-      console.log('I clicked this submit button');
-      console.log($(`textarea`).val());
+      // console.log('I clicked this submit button');
+      // console.log($(`textarea`).val());
 
+      // sends post request to insert new comment in DB, serialized the form data
       $.post( `/api/comments/${cardId}`, $('#submit-comment-button').serialize() )
         .done(() => {
+          // afterwards, we immediately send a get request to render all comments 
           $.get(`/api/comments/${cardId}`, (allCommentsData) => {
             $(`.create-comment-form textarea`).val('');
             // console.log('This happens 1st')

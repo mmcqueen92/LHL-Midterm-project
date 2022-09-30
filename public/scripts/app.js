@@ -21,7 +21,7 @@ $(() => {
 
   $(`#log-out-button`).on('click', (event) => {
     event.preventDefault();
-    $.post(`/logout`).then(() => {
+    $.post(`/logout`).done(() => {
       $(`#log-out-button`).hide();
     })
   })

@@ -135,7 +135,7 @@ $(() => {
       // sends post request to insert new comment in DB, serialized the form data
       $.post( `/api/comments/${cardId}`, $('#submit-comment-button').serialize() )
         .done(() => {
-          // afterwards, we immediately send a get request to render all comments 
+          // afterwards, we immediately send a get request to render all comments
           $.get(`/api/comments/${cardId}`, (allCommentsData) => {
             $(`.create-comment-form textarea`).val('');
             // console.log('This happens 1st')
@@ -175,7 +175,7 @@ $(() => {
             <h3 class="card-tile-title">${escape(title)}</h3>
           </div>
           <div class="card-date">
-            ${date}
+          ${date}
           </div>
           <div class="thumbnail">
             ${escape(url)}
@@ -190,6 +190,7 @@ $(() => {
     `);
     return $cardTile;
   };
+
 
   // cardTilesArray = res.json(cardData) aka our res.rows from db query
   const renderCardTile = (cardTilesArray) => {

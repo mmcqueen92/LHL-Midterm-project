@@ -26,6 +26,7 @@ router.get('/:card_id', (req, res) => {
   // cardTileInfo = res.rows from db query
   .then((singleCardInfo) => {
       // passsing in the singleCardInfo as res json object here to app.js
+      console.log(singleCardInfo);
       res.json(singleCardInfo)
   })
 });
